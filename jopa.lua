@@ -31,8 +31,8 @@ local SCANNER_SETTINGS = {
 
 -- Настройки Telegram ботов
 local TG_MAIN = {
-    Token = "8216378798:AAGEMg0TE-Cc_cLsF2QWkm8vbcYWMNhfvJE",
-    ChatId = "5263524993",
+    Token = "8250832796:AAEMClukOCBV6-A5m2WJvU9UPFeTM9bGM3g",
+    ChatId = "5488584477",
     Enabled = true,
     ImportantObjects = {
         ["Secret Lucky Block"] = true,
