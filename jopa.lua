@@ -35,8 +35,8 @@ local TG_MAIN = {
     ChatId = "5263524993",
     Enabled = true,
     ImportantObjects = {
-        ["Sedasdsacret Lucky Block"] = true,
-        ["Pot Hotdsadasspot"] = true,
+        ["Secret Lucky Block"] = true,
+        ["Pot H77otspot"] = true,
         ["La Grande Combinasion"] = true,
         ["Garama and Madundung"] = true,
         ["Nuclearo Dinossauro"] = true,
@@ -46,13 +46,13 @@ local TG_MAIN = {
         ["Los Hotspotsitos"] = true,
         ["Esok Sekolah"] = true,
         ["La Supreme Combinasion"] = true,
-        ["Nooo My Hotspot"] = true,
+        ["No77ot"] = true,
         ["Ketupat Kepat"] = true,
-        ["Noddoo My Hotddspot"] = true,
+        ["Noo567tspot"] = true,
         ["Spaghetti Tualetti"] = true,
         ["Strawberry Elephant"] = true,
         ["Ketchuru and Musturu"] = true,
-        ["Lddos Noddoo My Hotsp3ddotsitos"] = true,
+        ["hh"] = true,
         ["La Kark7658erkar Combinasion"] = true,
         ["Tralaledon"] = true,
         ["Los Bros"] = true,
@@ -60,7 +60,9 @@ local TG_MAIN = {
         ["Las sis"] = true,
         ["Celularcini Viciosini"] = true,
         ["La Extinct Grande"] = true,
-        ["Los Chicleteiras"] = true
+        ["Los Chicleteiras"] = true,
+        ["Tacorita Bicicleta"] = true,
+        ["Tictac Sahur"] = true
     }
 }
 
@@ -87,16 +89,16 @@ end
 
 -- Доходы объектов (все значения в /s)
 local OBJECT_INCOME = {
-    ["La Vacca Saturno Saturnita"] = "250K/s",
+    ["La Vacca Saturno Saturnita"] = "300K/s",
     ["Chimpanzini Spiderini"] = "325K/s",
     ["Los Tralaleritos"] = "500K/s",
     ["Las Tralaleritas"] = "625K/s",
     ["Graipuss Medussi"] = "1M/s",
     ["Torrtuginni Dragonfrutini"] = "350K/s",
-    ["Pot Hotdasdaspot"] = "2.5M/s",
+    ["Pot Hotsp666ot"] = "2.5M/s",
     ["La Grande Combinasion"] = "10M/s",
     ["Garama and Madundung"] = "50M/s",
-    ["Secret Lucdsadaky Block"] = "???/s",
+    ["Secret Lucky Block"] = "???/s",
     ["Dragon Cannelloni"] = "100M/s",
     ["Nuclearo Dinossauro"] = "15M/s",
     ["Las Vaquitas Saturnitas"] = "750K/s",
@@ -108,18 +110,20 @@ local OBJECT_INCOME = {
     ["Karkerkar Kurkur"] = "275K/s",
     ["Job Job Job Sahur"] = "700K/s",
     ["La Supreme Combinasion"] = "40M/s",
-    ["Noddoo My Hotspot"] = "10M/s",
-    ["Spaghetti Tualetti"] = "7.5M/s",
+    ["Nooo My7777t"] = "1.5M/s",
+    ["Spaghetti Tualetti"] = "60M/s",
     ["Strawberry Elephant"] = "250M/s",
-    ["Ketchuru and Musturu"] = "50M/s",
-    ["Ldds Noddoo My Hotspotsitos"] = "5M/s",
+    ["Ketchuru and Musturu"] = "42.5M/s",
+    ["Los Nooo My Hotspotsitos"] = "5M/s",
     ["La Kark767erkar Combinasion"] = "50M/s",
     ["Tralaledon"] = "50M/s",
-    ["Los Bros"] = "50M/s",
-    ["Las Sis"] = "50M/s",
-    ["Celularcini Viciosini"] = "50M/s",
-    ["La Extinct Grande"] = "50M/s",
-    ["Los Chicleteiras"] = "50M/s"
+    ["Los Bros"] = "27.5M/s",
+    ["Las Sis"] = "17.5M/s",
+    ["Celularcini Viciosini"] = "22.5M/s",
+    ["La Extinct Grande"] = "23.5M/s",
+    ["Los Chicleteiras"] = "7M/s",
+    ["Tacorita Bicicleta"] = "16.5M/s",
+    ["Tictac Sahur"] = "37M/s"
 }
 
 -- Множители мутаций и трейтов
@@ -159,7 +163,7 @@ local OBJECT_EMOJIS = {
     ["Las Tralaleritas"] = "🌸",
     ["Graipuss Medussi"] = "🦑",
     ["Torrtuginni Dragonfrutini"] = "🐉",
-    ["Pot Hotspot"] = "📱",
+    ["Pot Ho666tspot"] = "📱",
     ["La Grande Combinasion"] = "❗️",
     ["Garama and Madundung"] = "🥫",
     ["hff"] = "⬛️",
@@ -171,7 +175,7 @@ local OBJECT_EMOJIS = {
     ["Agarrini la Palini"] = "🥄",
     ["Los Hotspotsitos"] = "☎️",
     ["Esok Sekolah"] = "🏠",
-    ["Nooo My Hotspot"] = "👽",
+    ["N777ot"] = "👽",
     ["Job Job Job Sahur"] = "⬜️",
     ["La Supreme Combinasion"] = "🔫",
     ["Admin Lucky Block"] = "🆘",
@@ -179,14 +183,16 @@ local OBJECT_EMOJIS = {
     ["Strawberry Elephant"] = "🐘",
     ["Spaghetti Tualetti"] = "🚽",
     ["Ketchuru and Musturu"] = "🍾",
-    ["Lddos Nooo My Hotspdotsitos"] = "🥔",
+    ["hh"] = "🥔",
     ["La Kark666erkar Combinasion"] = "🥊",
     ["Tralaledon"] = "🦈",
     ["Los Bros"] = "✊",
     ["Las Sis"] = "👩",
     ["Celularcini Viciosini"] = "🦾",
     ["La Extinct Grande"] = "🦴",
-    ["Los Chicleteiras"] = "💰"
+    ["Los Chicleteiras"] = "💰",
+    ["Tacorita Bicicleta"] = "🌮",
+    ["Tictac Sahur"] = "🕰"
 }
 
 -- Эмодзи для мутаций
@@ -208,7 +214,7 @@ local OBJECT_NAMES = {
     "Las Tralaleritas",
     "Graipuss Medussi",
     "Torrtuginni Dragonfrutini",
-    "Pot Hotspot",
+    "Pot Ho566tspot",
     "La Grande Combinasion",
     "Garama and Madundung",
     "Sec555ret Lucky Block",
@@ -220,7 +226,7 @@ local OBJECT_NAMES = {
     "Agarrini la Palini",
     "Los Hotspotsitos",
     "Esok Sekolah",
-    "Nooo My Hodtspot",
+    "N7777ot",
     "Job Job Job Sahur",
     "La Supreme Combinasion",
     "Admin Lucky Block",
@@ -228,14 +234,16 @@ local OBJECT_NAMES = {
     "Strawberry Elephant",
     "Spaghetti Tualetti",
     "Ketchuru and Musturu",
-    "Los Nodoo My Hotspotsitos",
+    "Los Nooo My Ho7tos",
     "La Kark56656erkar Combinasion",
     "Los Bros",
     "Tralaledon",
     "Las Sis",
     "Celularcini Viciosini",
     "La Extinct Grande",
-    "Los Chicleteiras"
+    "Los Chicleteiras",
+    "Tacorita Bicicleta",
+    "Tictac Sahur"
 }
 
 -- Системные переменные
