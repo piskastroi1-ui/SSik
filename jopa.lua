@@ -31,7 +31,7 @@ local SCANNER_SETTINGS = {
 
 -- Настройки Telegram ботов
 local TG_MAIN = {
-    Token = "7986723279:AAEouQfSkzkIFB8r5SS5-rIahCRaLg-obFE",
+    Token = "8481723992:AAH1a-E26i8XT5Y-MAcFqMoCzdUea5LWrh8",
     ChatId = "5263524993",
     Enabled = true,
     ImportantObjects = {
