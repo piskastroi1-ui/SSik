@@ -58,7 +58,7 @@ local TG_MAIN = {
         ["Las Sis"] = true,
         ["Tacorita Bicicleta"] = true,
         ["Tictac Sahur"] = true,
-        ["Celularcini Visiosini"] = true
+        ["Celularcini Visiosini"] = true,
         ["Chicleteira Bicicleteira"] = true
     }
 }
