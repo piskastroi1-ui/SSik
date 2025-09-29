@@ -59,7 +59,10 @@ local TG_MAIN = {
         ["Tacorita Bicicleta"] = true,
         ["Tictac Sahur"] = true,
         ["Celularcini Visiosini"] = true,
-        ["Chicleteira Bicicleteira"] = true
+        ["Chicleteira Bicicleteira"] = true,
+        ["Los Primos"] = true,
+        ["Tang Tang Keletang"] = true,
+        ["Money Money Puggy"] = true
     }
 }
 
@@ -121,7 +124,10 @@ local OBJECT_INCOME = {
     ["Las Sis"] = "18M/s",
     ["Tacorita Bicicleta"] = "16.5M/s",
     ["Tictac Sahur"] = "37M/s",
-    ["Celularcini Visiosini"] = "22.5M/s"
+    ["Celularcini Visiosini"] = "22.5M/s",
+    ["Los Primos"] = "31M/s",
+    ["Tang Tang Keletang"] = "33.5M/s",
+    ["Money Money Puggy"] = "21M/s"
 }
 
 -- Множители мутаций и трейтов
@@ -132,7 +138,8 @@ local MUTATION_MULTIPLIERS = {
     ["Bloodrot"] = 2,
     ["Candy"] = 4,
     ["Lava"] = 6,
-    ["Galaxy"] = 6
+    ["Galaxy"] = 7,
+    ["Yin Yang"] = 7
 }
 
 local TRAIT_MULTIPLIERS = {
@@ -199,7 +206,10 @@ local OBJECT_EMOJIS = {
     ["Las Sis"] = "👧",
     ["Tacorita Bicicleta"] = "🌮",
     ["Tictac Sahur"] = "🕰️",
-    ["Celularcini Visiosini"] = "📞"
+    ["Celularcini Visiosini"] = "📞",
+    ["Los Primos"] = "🙆‍♂️",
+    ["Tang Tang Keletang"] = "📢",
+    ["Money Money Puggy"] = "🐶"
 }
 
 -- Эмодзи для мутаций
@@ -210,7 +220,8 @@ local MUTATION_EMOJIS = {
     ["Diamond"] = "💎",
     ["Candy"] = "🍬",
     ["Bloodrot"] = "🟥",
-    ["Galaxy"] = "🟪"
+    ["Galaxy"] = "🟪",
+    ["Yin Yang"] = "☯️"
 }
 
 -- Список объектов
@@ -249,7 +260,10 @@ local OBJECT_NAMES = {
     "Las Sis",
     "Tacorita Bicicleta",
     "Tictac Sahur",
-    "Celularcini Visiosini"
+    "Celularcini Visiosini",
+    "Los Primos",
+    "Tang Tang Keletang",
+    "Money Money Puggy"
 }
 
 -- Системные переменные
