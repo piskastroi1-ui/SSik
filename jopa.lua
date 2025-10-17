@@ -22,7 +22,7 @@ local OBJECTS = {
     ['La Supreme Combinasion'] = { emoji = '🔫', important = true },
     ['Ketupat Kepat'] = { emoji = '🍏', important = true },
     ['Strawberry Elephant'] = { emoji = '🐘', important = true },
-    ['Spaghetti Tualetti'] = { emoji = '🚽', important = true, high_priority = true },
+    ['Spaghetti Tualetti'] = { emoji = '🚽', important = true, },
     ['Ketchuru and Musturu'] = { emoji = '🍾', important = true },
     ['Tralaledon'] = { emoji = '🦈', important = true },
     ['La Extinct Grande'] = { emoji = '🩻', important = true, high_priority = true },
