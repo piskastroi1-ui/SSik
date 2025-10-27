@@ -41,7 +41,6 @@ local OBJECTS = {
     ['La Casa Boo'] = { emoji = '👁‍🗨', important = true },
     ['Headless Horseman'] = { emoji = '🐴', important = true },
 }
-}
 
 -- Создаем списки важных объектов
 local ALWAYS_IMPORTANT = {}
