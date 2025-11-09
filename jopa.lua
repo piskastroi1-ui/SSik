@@ -37,7 +37,7 @@ local OBJECTS = {
     ['Spooky and Pumpky'] = { emoji = '🎃', important = true, },
     ['La Spooky Grande'] = { emoji = '👻', important = true, high_priority = true },
     ['Meowl'] = { emoji = '🐈', important = true },
-    ['Chipso And Queso'] = { emoji = '🧀', important = true, high_priority = true },
+    ['Chipso and Queso'] = { emoji = '🧀', important = true, high_priority = true },
     ['La Casa Boo'] = { emoji = '👁‍🗨', important = true },
     ['Headless Horseman'] = { emoji = '🐴', important = true },
     ['Mariachi Corazoni'] = { emoji = '💀', important = true },
