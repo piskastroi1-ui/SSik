@@ -9,7 +9,8 @@ local SETTINGS = {
     GAME_ID = 109983668079237,
     PASTEFY_URL = "https://raw.githubusercontent.com/piskastroi1-ui/SSik/refs/heads/main/fdsafsd",
     COOLDOWN_TIME = 5 * 60,
-    COUNTDOWN_TIME = 3,
+    COUNTDOWN_TIME = 2,
+    COUNTDOWN_TIME = 0,
     ERROR_RETRY_DELAY = 3,  -- 3 секунды при ошибке
     SUCCESS_DELAY = 3       -- 6 секунд при успехе
 }
@@ -127,12 +128,12 @@ local function LoadServers()
     local success, response = pcall(function()
         return game:HttpGet(SETTINGS.PASTEFY_URL)
     end)
-    
+
     if not success then 
         UpdateStatus("❌ Ошибка загрузки списка серверов:\n"..tostring(response):sub(1, 100), Color3.fromRGB(255, 100, 100))
         return {}
     end
-    
+
     local servers = {}
     for serverId in string.gmatch(response, "([a-f0-9%-]+)") do
         table.insert(servers, serverId)
@@ -153,9 +154,9 @@ local function TryTeleport(target)
         end
         SHOW_COUNTDOWN = false
     end
-    
+
     UpdateStatus("🔗 Подключение к серверу...", Color3.fromRGB(150, 255, 150))
-    
+
     local success, err = pcall(function()
         TeleportService:TeleportToPlaceInstance(
             SETTINGS.GAME_ID,
@@ -163,7 +164,7 @@ local function TryTeleport(target)
             Players.LocalPlayer
         )
     end)
-    
+
     if not success then
         if IsTeleportError(err) then
             UpdateStatus("⛔️ Ошибка:\n"..tostring(err):match("^[^\n]+"):sub(1, 100), Color3.fromRGB(255, 100, 100))
@@ -175,7 +176,7 @@ local function TryTeleport(target)
         task.wait(SETTINGS.ERROR_RETRY_DELAY)
         return false
     end
-    
+
     UpdateStatus("✅ Успешное подключение!\nЗавершение через "..SETTINGS.SUCCESS_DELAY.." сек...", Color3.fromRGB(100, 255, 100))
     task.wait(SETTINGS.SUCCESS_DELAY)
     return true
@@ -192,7 +193,7 @@ local function TeleportLoop()
             break
         end
     end
-    
+
     while true do
         local available = {}
         for _, serverId in ipairs(SERVER_LIST) do
@@ -200,7 +201,7 @@ local function TeleportLoop()
                 table.insert(available, serverId)
             end
         end
-        
+
         if #available == 0 then
             UpdateStatus("⏳ Все серверы на кд\nОжидание "..SETTINGS.COOLDOWN_TIME.." сек...", Color3.fromRGB(255, 200, 100))
             SHOW_COUNTDOWN = true
@@ -209,7 +210,7 @@ local function TeleportLoop()
         else
             local target = available[math.random(1, #available)]
             UpdateStatus("🔍 Попытка подключения к:\n"..target:sub(1, 8).."...", Color3.fromRGB(200, 200, 255))
-            
+
             if TryTeleport(target) then
                 UpdateStatus("🚀 Успешное подключение!", Color3.fromRGB(100, 255, 100))
                 break
