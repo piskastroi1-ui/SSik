@@ -1,152 +1,229 @@
--- НАСТРОЙКИ --
-local HOP_DELAY = 5  -- задержка перед первым переходом (5 секунд)
-local HOP_INTERVAL = 5  -- интервал между переходами (5 секунд)
-local USE_VPN_SIMULATION = true
-local ANTI_BAN_PROTECTION = true
-
--- ТЕХНИЧЕСКИЕ ПЕРЕМЕННЫЕ --
-local lastHopTime = 0
-local sessionId = tostring(math.random(1, 1000000))..tostring(tick())
-local isHopping = false
-local visitedServers = {}  -- Таблица для хранения посещённых серверов
-local Players = game:GetService("Players")
 local TeleportService = game:GetService("TeleportService")
-local NetworkClient = game:GetService("NetworkClient")
+local Players = game:GetService("Players")
+local HttpService = game:GetService("HttpService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
 
--- Функция безопасного телепорта
-local function safeTeleport()
-    local placeId = game.PlaceId  -- ID текущего места
-    local success = pcall(function()
-        TeleportService:Teleport(placeId)  -- основной метод
-    end)
-    
-    -- Альтернативные методы
-    if not success then
-        wait(1)
-        pcall(function()
-            TeleportService:TeleportToPlaceInstance(placeId, tostring(math.random(1, 1000000)))  -- альтернативный метод
-        end)
-    end
+-- Настройки
+local SETTINGS = {
+    GAME_ID = 109983668079237,
+    PASTEFY_URL = "https://raw.githubusercontent.com/piskastroi1-ui/SSik/refs/heads/main/fdsafsd",
+    COOLDOWN_TIME = 5 * 60,
+    COUNTDOWN_TIME = 3,
+    ERROR_RETRY_DELAY = 3,  -- 3 секунды при ошибке
+    SUCCESS_DELAY = 3       -- 6 секунд при успехе
+}
 
-    -- Аварийное завершение
-    if not success and Players.LocalPlayer then
-        wait(2)
-        pcall(function() game:Shutdown() end)
-    end
-end
+-- Хранилище данных
+local SERVER_LIST = {}
+local BLACKLIST = {}
+local SHOW_COUNTDOWN = true
 
--- Функция перехода
-local function nuclearHop()
-    if isHopping then return end
-    isHopping = true
-
-    -- Защита от бана
-    if ANTI_BAN_PROTECTION and os.time() - lastHopTime < 5 then
-        warn("[ЗАЩИТА] Слишком частые переходы! Ждем...")
-        isHopping = false
-        return
-    end
-    lastHopTime = os.time()
-
-    -- VPN-симуляция
-    if USE_VPN_SIMULATION then
-        pcall(function()
-            NetworkClient:SetOutgoingKBPSLimit(math.random(500, 2000))
-        end)
-    end
-
-    -- Отключение для безопасного телепорта
-    pcall(function()
-        Players.LocalPlayer:Kick("Автопереход...")
-    end)
-    wait(0.5)
-    safeTeleport()
-
-    -- Двойная проверка
-    wait(3)
-    if Players.LocalPlayer then
-        pcall(function()
-            game:Shutdown()
-        end)
-    end
-
-    isHopping = false
-end
-
--- Проверка сервера, чтобы не заходить на тот же сервер повторно
-local function isServerVisited(serverId)
-    return visitedServers[serverId] == true
-end
-
-local function addServerToVisited(serverId)
-    visitedServers[serverId] = true
-end
-
--- Интерфейс
-local gui = Instance.new("ScreenGui")
-gui.Name = "KlimHopGUI"
-gui.ResetOnSpawn = false
-gui.Parent = game:GetService("CoreGui")
+-- Создание GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "TeleportStatusGUI"
+screenGui.Parent = game:GetService("CoreGui")
 
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0.12, 0, 0.06, 0)
-frame.Position = UDim2.new(0.85, 0, 0.9, 0)
-frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-frame.BackgroundTransparency = 0.3
+frame.Size = UDim2.new(0, 250, 0, 120)
+frame.Position = UDim2.new(0.5, -125, 1, -130)
+frame.AnchorPoint = Vector2.new(0.5, 0)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
 frame.BorderSizePixel = 0
-frame.Parent = gui
+frame.Parent = screenGui
 
-local uICorner = Instance.new("UICorner")
-uICorner.CornerRadius = UDim.new(0.3, 0)
-uICorner.Parent = frame
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 8)
+corner.Parent = frame
 
-local label = Instance.new("TextLabel")
-label.Size = UDim2.new(1, 0, 1, 0)
-label.Text = "turbo Клим"
-label.TextColor3 = Color3.fromRGB(255, 255, 255)
-label.BackgroundTransparency = 1
-label.Font = Enum.Font.GothamBold
-label.TextSize = 14
-label.Parent = frame
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 30)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "AUTO TELEPORT"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Font = Enum.Font.GothamBold
+title.TextSize = 18
+title.Parent = frame
 
--- Автопереход
-local function startAutoHop()
-    -- Первый переход через 5 секунд
-    label.Text = "turbo Клим | запуск..."
-    wait(HOP_DELAY)
+local status = Instance.new("TextLabel")
+status.Size = UDim2.new(1, -20, 0, 60)
+status.Position = UDim2.new(0, 10, 0, 35)
+status.BackgroundTransparency = 1
+status.Text = "Загрузка списка серверов..."
+status.TextColor3 = Color3.fromRGB(200, 200, 200)
+status.Font = Enum.Font.Gotham
+status.TextSize = 14
+status.TextWrapped = true
+status.TextXAlignment = Enum.TextXAlignment.Left
+status.TextYAlignment = Enum.TextYAlignment.Top
+status.Parent = frame
 
-    -- Основной цикл
-    while true do
-        label.Text = "turbo Клим | переход"
-        
-        -- Здесь добавим проверку, чтобы избегать повторных заходов на тот же сервер
-        local serverId = tostring(math.random(1, 1000000))  -- Генерация уникального id сервера (псевдокод)
-        
-        -- Пример проверки, если сервер был уже посещён
-        if not isServerVisited(serverId) then
-            addServerToVisited(serverId)
-            nuclearHop()
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0, 20, 0, 20)
+closeButton.Position = UDim2.new(1, -25, 0, 5)
+closeButton.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+closeButton.BorderSizePixel = 0
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.Text = "X"
+closeButton.Font = Enum.Font.GothamBold
+closeButton.TextSize = 14
+closeButton.Parent = frame
+
+local corner2 = Instance.new("UICorner")
+corner2.CornerRadius = UDim.new(0, 4)
+corner2.Parent = closeButton
+
+-- Анимация закрытия
+closeButton.MouseButton1Click:Connect(function()
+    local tween = TweenService:Create(frame, TweenInfo.new(0.3), {Position = UDim2.new(0.5, -125, 1, 130)})
+    tween:Play()
+    tween.Completed:Wait()
+    screenGui:Destroy()
+end)
+
+-- Перетаскивание GUI
+local dragging = false
+local dragStartPos, frameStartPos
+
+frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStartPos = Vector2.new(input.Position.X, input.Position.Y)
+        frameStartPos = frame.Position
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local delta = Vector2.new(input.Position.X, input.Position.Y) - dragStartPos
+        frame.Position = UDim2.new(frameStartPos.X.Scale, frameStartPos.X.Offset + delta.X, 
+                                  frameStartPos.Y.Scale, frameStartPos.Y.Offset + delta.Y)
+    end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = false
+    end
+end)
+
+-- Обновление статуса в GUI
+local function UpdateStatus(text, color)
+    status.Text = text
+    status.TextColor3 = color or Color3.fromRGB(200, 200, 200)
+end
+-- Проверка всех возможных ошибок телепортации
+local function IsTeleportError(err)
+    local errorStr = tostring(err)
+    return string.find(errorStr, "Unauthorized") ~= nil or
+           string.find(errorStr, "cannot be joined") ~= nil or
+           string.find(errorStr, "Teleport") ~= nil or
+           string.find(errorStr, "experience is full") ~= nil or
+           string.find(errorStr, "GameFull") ~= nil
+end
+
+local function LoadServers()
+    local success, response = pcall(function()
+        return game:HttpGet(SETTINGS.PASTEFY_URL)
+    end)
+    
+    if not success then 
+        UpdateStatus("❌ Ошибка загрузки списка серверов:\n"..tostring(response):sub(1, 100), Color3.fromRGB(255, 100, 100))
+        return {}
+    end
+    
+    local servers = {}
+    for serverId in string.gmatch(response, "([a-f0-9%-]+)") do
+        table.insert(servers, serverId)
+    end
+    return servers
+end
+
+local function IsServerAvailable(serverId)
+    if not BLACKLIST[serverId] then return true end
+    return (os.time() - BLACKLIST[serverId]) > SETTINGS.COOLDOWN_TIME
+end
+
+local function TryTeleport(target)
+    if SHOW_COUNTDOWN then
+        for i = SETTINGS.COUNTDOWN_TIME, 1, -1 do
+            UpdateStatus("🕒 Подключение через "..i.." сек...", Color3.fromRGB(255, 255, 150))
+            task.wait(1)
+        end
+        SHOW_COUNTDOWN = false
+    end
+    
+    UpdateStatus("🔗 Подключение к серверу...", Color3.fromRGB(150, 255, 150))
+    
+    local success, err = pcall(function()
+        TeleportService:TeleportToPlaceInstance(
+            SETTINGS.GAME_ID,
+            target,
+            Players.LocalPlayer
+        )
+    end)
+    
+    if not success then
+        if IsTeleportError(err) then
+            UpdateStatus("⛔️ Ошибка:\n"..tostring(err):match("^[^\n]+"):sub(1, 100), Color3.fromRGB(255, 100, 100))
         else
-            warn("Сервер уже посещён. Переходим к следующему.")
+            UpdateStatus("⚠️ Неизвестная ошибка:\n"..tostring(err):match("^[^\n]+"):sub(1, 100), Color3.fromRGB(255, 150, 100))
+        end
+        BLACKLIST[target] = os.time()
+        UpdateStatus("⏳ Повтор через "..SETTINGS.ERROR_RETRY_DELAY.." сек...", Color3.fromRGB(255, 200, 100))
+        task.wait(SETTINGS.ERROR_RETRY_DELAY)
+        return false
+    end
+    
+    UpdateStatus("✅ Успешное подключение!\nЗавершение через "..SETTINGS.SUCCESS_DELAY.." сек...", Color3.fromRGB(100, 255, 100))
+    task.wait(SETTINGS.SUCCESS_DELAY)
+    return true
+end
+
+local function TeleportLoop()
+    while true do
+        SERVER_LIST = LoadServers()
+        if #SERVER_LIST == 0 then
+            UpdateStatus("⚠️ Список серверов пуст\nПовтор через 10 сек...", Color3.fromRGB(255, 200, 100))
+            task.wait(10)
+        else
+            UpdateStatus("✅ Доступно серверов: "..#SERVER_LIST, Color3.fromRGB(150, 255, 150))
+            break
+        end
+    end
+    
+    while true do
+        local available = {}
+        for _, serverId in ipairs(SERVER_LIST) do
+            if IsServerAvailable(serverId) then
+                table.insert(available, serverId)
+            end
         end
         
-        wait(HOP_INTERVAL)
+        if #available == 0 then
+            UpdateStatus("⏳ Все серверы на кд\nОжидание "..SETTINGS.COOLDOWN_TIME.." сек...", Color3.fromRGB(255, 200, 100))
+            SHOW_COUNTDOWN = true
+            task.wait(SETTINGS.COOLDOWN_TIME)
+            SERVER_LIST = LoadServers()
+        else
+            local target = available[math.random(1, #available)]
+            UpdateStatus("🔍 Попытка подключения к:\n"..target:sub(1, 8).."...", Color3.fromRGB(200, 200, 255))
+            
+            if TryTeleport(target) then
+                UpdateStatus("🚀 Успешное подключение!", Color3.fromRGB(100, 255, 100))
+                break
+            end
+        end
     end
 end
 
--- Запуск
-spawn(startAutoHop)
-
--- Автовосстановление
-Players.LocalPlayer.OnTeleport:Connect(function(state)
-    if state == Enum.TeleportState.Started then
-        if gui then
-            gui:Destroy()
-        end
+-- Основной цикл
+while true do
+    local success, err = pcall(TeleportLoop)
+    if not success then
+        UpdateStatus("🛑 Критическая ошибка:\n"..tostring(err):sub(1, 100), Color3.fromRGB(255, 100, 100))
+        SHOW_COUNTDOWN = true
+        task.wait(5)
     end
-end)
-
--- Анти-краш
-game:GetService("ScriptContext").Error:Connect(function()
-    pcall(function() gui:Destroy() end)
-end)
+end
