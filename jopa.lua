@@ -31,7 +31,7 @@ local OBJECTS = {
     ['Tang Tang Keletang'] = { emoji = '📢', important = true },
     ['Money Money Puggy'] = { emoji = '🐶', important = true }, 
     ['Burguro And Fryuro'] = { emoji = '🍔', important = true },
-    ['Chillin Chili'] = { emoji = '🌶', important = true, high_priority = true },
+    ['Chillin Chili'] = { emoji = '🌶', important = true },
     ['La Secret Combinasion'] = { emoji = '❓', important = true },
     ['Eviledon'] = { emoji = '👹', important = true },
     ['Spooky and Pumpky'] = { emoji = '🎃', important = true, },
