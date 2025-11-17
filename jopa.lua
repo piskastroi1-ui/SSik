@@ -8,7 +8,7 @@ local HttpService = game:GetService('HttpService')
 
 -- ⚙️ НАСТРОЙКИ
 local INCOME_THRESHOLD = 50_000_000 -- 50M/s минимум для уведомления
-local HIGH_PRIORITY_THRESHOLD = 500_000_000 -- 500M/s для особо важных объектов
+local HIGH_PRIORITY_THRESHOLD = 300_000_000 -- 500M/s для особо важных объектов
 local DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1424146317604687932/G5mtYy3JUjj0I8OQxIyxBDfr2oU0tHGe96R00BnoUDeRGukoPeSYn4AJBAnCrHJz0da4'
 
 print('🎯 Brainrot Scanner v2.0 | JobId:', game.JobId)
@@ -25,7 +25,6 @@ local OBJECTS = {
     ['Spaghetti Tualetti'] = { emoji = '🚽', important = true },
     ['Ketchuru and Musturu'] = { emoji = '🍾', important = true },
     ['Tralaledon'] = { emoji = '🦈', important = true },
-    ['La Extinct Grande'] = { emoji = '🩻', important = true, high_priority = true },
     ['Tictac Sahur'] = { emoji = '🕰️', important = true },
     ['Los Primos'] = { emoji = '🙆‍♂️', important = true },
     ['Tang Tang Keletang'] = { emoji = '📢', important = true },
@@ -37,7 +36,7 @@ local OBJECTS = {
     ['Spooky and Pumpky'] = { emoji = '🎃', important = true, },
     ['La Spooky Grande'] = { emoji = '👻', important = true, high_priority = true },
     ['Meowl'] = { emoji = '🐈', important = true },
-    ['Chipso and Queso'] = { emoji = '🧀', important = true, high_priority = true },
+    ['Chipso and Queso'] = { emoji = '🧀', important = true },
     ['La Casa Boo'] = { emoji = '👁‍🗨', important = true },
     ['Headless Horseman'] = { emoji = '🐴', important = true },
     ['Los Tacoritas'] = { emoji = '🚴', important = true },
@@ -47,6 +46,9 @@ local OBJECTS = {
     ['Los Puggies'] = { emoji = '🦮', important = true },
     ['Orcaledon'] = { emoji = '🐡', important = true },
     ['Fragrama and Chocrama'] = { emoji = '🐡', important = true },
+    ['Guest 666'] = { emoji = '㊙️', important = true },
+    ['Los Primos'] = { emoji = '🙆‍♂️', important = true },
+    ['Los Bros'] = { emoji = '📱', important = true },
 }
 
 -- Создаем списки важных объектов
