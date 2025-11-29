@@ -54,7 +54,7 @@ local OBJECTS = {
     ['W or L'] = { emoji = '🪜', important = true },
     ['Fishino Clownino'] = { emoji = '🤡', important = true },
     ['La Ginger Sekolah'] = { emoji = '🎄', important = true },
-    ['Tung Tung Tung Sahur'] = { emoji = '🪦', important = true },
+    ['Tung Tu1ng Tu1ng Sa2hur'] = { emoji = '🪦', important = true },
 }
 
 -- Создаем списки важных объектов
