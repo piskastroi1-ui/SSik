@@ -363,7 +363,7 @@ local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
 
 -- Настройки первого скрипта (скрытие игроков)
-local radius = 25
+local radius = 10
 local originalProperties = {}
 
 -- Настройки второго скрипта (ESP - только подсветка)
