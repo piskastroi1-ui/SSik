@@ -434,3 +434,132 @@ print("Brainrot Tracker запущен!")
 print("Скрипт показывает плавный луч к брайнроту с M/s над головой")
 print("Луч автоматически становится тоньше при приближении к брейнроту")
 print("====================================")
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+
+local highlightColor = Color3.fromRGB(255, 105, 180) -- Розовый цвет
+local espData = {}
+
+-- Функция создания ESP для игрока
+local function createESP(player)
+    if espData[player] then return end
+    
+    espData[player] = {
+        NameLabel = Drawing.new("Text"),
+        Highlight = nil
+    }
+    
+    local data = espData[player]
+    
+    -- Создаем текст с именем (жирный)
+    data.NameLabel.Text = player.Name
+    data.NameLabel.Size = 18
+    data.NameLabel.Color = highlightColor
+    data.NameLabel.Outline = true
+    data.NameLabel.OutlineColor = Color3.new(0, 0, 0)
+    data.NameLabel.Visible = false
+    
+    -- Функция для создания подсветки персонажа
+    local function addHighlight(character)
+        if data.Highlight then
+            data.Highlight:Destroy()
+        end
+        
+        local highlight = Instance.new("Highlight")
+        highlight.Name = "ESP_Highlight"
+        highlight.FillColor = highlightColor
+        highlight.FillTransparency = 0.2
+        highlight.OutlineColor = highlightColor
+        highlight.OutlineTransparency = 0
+        highlight.Adornee = character
+        highlight.Parent = character
+        
+        data.Highlight = highlight
+    end
+    
+    -- Если персонаж уже существует
+    if player.Character then
+        addHighlight(player.Character)
+    end
+    
+    -- Следим за появлением нового персонажа
+    player.CharacterAdded:Connect(function(character)
+        addHighlight(character)
+    end)
+end
+
+-- Функция обновления позиции имени
+local function updateESP()
+    local camera = workspace.CurrentCamera
+    
+    for player, data in pairs(espData) do
+        if player ~= LocalPlayer and player.Character then
+            local character = player.Character
+            local head = character:FindFirstChild("Head")
+            
+            if head then
+                local headPos, onScreen = camera:WorldToViewportPoint(head.Position + Vector3.new(0, 2, 0))
+                
+                if onScreen then
+                    -- Обновляем позицию имени
+                    data.NameLabel.Position = Vector2.new(headPos.X, headPos.Y)
+                    data.NameLabel.Visible = true
+                    
+                    -- Включаем подсветку
+                    if data.Highlight then
+                        data.Highlight.Enabled = true
+                    end
+                else
+                    -- Скрываем если не на экране
+                    data.NameLabel.Visible = false
+                    if data.Highlight then
+                        data.Highlight.Enabled = false
+                    end
+                end
+            end
+        end
+    end
+end
+
+-- Функция удаления ESP
+local function removeESP(player)
+    if espData[player] then
+        local data = espData[player]
+        
+        if data.NameLabel then
+            data.NameLabel:Remove()
+        end
+        
+        if data.Highlight then
+            data.Highlight:Destroy()
+        end
+        
+        espData[player] = nil
+    end
+end
+
+-- Создаем ESP для всех существующих игроков
+for _, player in pairs(Players:GetPlayers()) do
+    if player ~= LocalPlayer then
+        createESP(player)
+    end
+end
+
+-- Создаем ESP для новых игроков
+Players.PlayerAdded:Connect(function(player)
+    if player ~= LocalPlayer then
+        createESP(player)
+    end
+end)
+
+-- Удаляем ESP при выходе игрока
+Players.PlayerRemoving:Connect(function(player)
+    removeESP(player)
+end)
+
+-- Обновляем ESP каждый кадр
+RunService.RenderStepped:Connect(updateESP)
+
+print("ESP включен! Игроки подсвечены розовым цветом.")
