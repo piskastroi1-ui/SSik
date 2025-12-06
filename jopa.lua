@@ -57,6 +57,10 @@ local OBJECTS = {
     ['Las Sis'] = { emoji = '☕️', threshold = 350000000 },
     ['Tacorita Bicicleta'] = { emoji = '🌮', threshold = 100000000 },
     ['Los Mobilis'] = { emoji = '📱', threshold = 350000000 },
+    ['La Ginger Sekolah'] = { emoji = '🎄', threshold = 10000000 },
+    ['Christmas Chicleteira'] = { emoji = '🛷', threshold = 10000000 },
+    ['La Jolly Grande'] = { emoji = '☃️', threshold = 10000000 },
+    ['Ginger'] = { emoji = '🧸', threshold = 10000000 },
 }
 
 -- 💰 ПАРСЕР ДОХОДА
