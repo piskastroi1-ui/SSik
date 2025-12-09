@@ -289,7 +289,7 @@ local ESP_SETTINGS = { MaxDistance = 500, Font = Enum.Font.GothamBold, Color = C
     BgColor = Color3.fromRGB(24, 16, 40), TxtColor = Color3.fromRGB(225, 210, 255), TextSize = 16 }
 local OBJECT_EMOJIS = {['La Supreme Combinasion'] = '🔫',
     ['Ketupat Kepat'] = '⚰️',['Tictac Sahur'] = '🕰',["Tang Tang Keletang"] = "📢",["Money Money Puggy"] = "🐶",["Los Primos"] = "🙆‍♂️",['Meowl'] = '🐈',['Fragrama and Chocrama'] = '🥥',['Los Spaghettis'] = '🧻',['Chipso and Queso'] = '🧀',['Orcaledon'] = '🐳',['Fishino Clownino'] = '🤡',['W or L'] = '🪜',['Lavadorito Spinito'] = '📺',['Gobblino Uniciclino'] = '🕊',['La Jolly Grande'] = '☃️',
-    ['Garama and Madundung'] = '🥫',['Los Tacoritas'] = '🚴',['Tacorita Bicicleta'] = '🚵‍♂️',['Cooki and Milki'] = '🍪',['Los Puggies'] = '🦮',
+    ['Garama and Madundung'] = '🥫',['Los Tacoritas'] = '🚴',['Tacorita Bicicleta'] = '🚵‍♂️',['Cooki and Milki'] = '🍪',['Los Puggies'] = '🦮',['Santa Chicleteira'] = '🎅🏿',
     ['Strawberry Elephant'] = '🐘',['Nuclearo Dinossauro'] = '🦕',['Spaghetti Tualetti'] = '🚽',['La Casa Boo'] = '👁‍🗨',['Headless Horseman'] = '🪦',['Los Planitos'] = '🌍',
     ['Chicleteira Bicicleteira'] = '🚲',['Ketchuru and Musturu'] = '🍾',['Tacorita Bicicleta'] = '🌮',['La Taco Combinasion'] = '👒',['Mariachi Corazoni'] = '💀',
     ['Esok Sekolah'] = '🏠',['Los Bros'] = '✊',["Tralaledon"] = "🦈",["Las Sis"] = "👧",["Los Chicleteiras"] = "🚳",["Celularcini Viciosini"] = "📢",["Dragon Cannelloni"] = "🐉",["La Secret Combinasion"] = "❓",["Burguro And Fryuro"] = "🍔",["Chillin Chili"] = "🌶",["Eviledon"] = "👹",['Spooky and Pumpky'] = '🎃',['La Spooky Grande'] = '👻',['Capitano Moby'] = '🚢'
