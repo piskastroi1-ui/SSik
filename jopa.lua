@@ -61,6 +61,7 @@ local OBJECTS = {
     ['La Jolly Grande'] = { emoji = '☃️', threshold = 150000000 },
     ['Gingerat Gerat'] = { emoji = '🧸', threshold = 10000000 },
     ['Santa Chicleteira'] = { emoji = '🎅🏿', threshold = 10000000 },
+    ['Los Spaghettis'] = { emoji = '🧻', threshold = 10000000 },
 }
 
 -- 💰 ПАРСЕР ДОХОДА
