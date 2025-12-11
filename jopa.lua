@@ -80,6 +80,7 @@ local OBJECTS = {
     ['Christmas Chicleteira'] = { emoji = '🛷', important = true },
     ['La Jolly Grande'] = { emoji = '☃️', important = true },
     ['Ginger'] = { emoji = '🧸', important = true },
+    ['ЧАЙ'] = '☕️', important = true },
 }
 
 -- Создаем список важных объектов
